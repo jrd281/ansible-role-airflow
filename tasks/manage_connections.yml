@@ -19,7 +19,7 @@
 # Only add and delete actions are managed, not update
 - name: 'CONFIG | CONNECTIONS | Remove listed connections'
   command: >
-    {{ airflow_virtualenv }}/bin/airflow connections delete --conn-id {{ item.conn_id }}
+    {{ airflow_virtualenv }}/bin/airflow connections delete {{ item.conn_id }}
   changed_when: false
   no_log: True
   with_items: "{{ airflow_connections }}"
