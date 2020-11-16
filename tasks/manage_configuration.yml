@@ -3,16 +3,16 @@
 # Airflow configuration tasks
 
 # Manage configuration templating
-- name: 'CONFIG | Manage configuration templating'
-  become_user: "{{ airflow_user_name }}"
-  become: true
-  template:
-    src: "{{ airflow_config_template }}"
-    dest: "{{ airflow_application_home }}/airflow.cfg"
-    owner: "{{ airflow_user_name }}"
-    group: "{{ airflow_user_group }}"
-    mode: '0400'
-  notify: 'Restart airflow'
+#- name: 'CONFIG | Manage configuration templating'
+#  become_user: "{{ airflow_user_name }}"
+#  become: true
+#  template:
+#    src: "{{ airflow_config_template }}"
+#    dest: "{{ airflow_application_home }}/airflow.cfg"
+#    owner: "{{ airflow_user_name }}"
+#    group: "{{ airflow_user_group }}"
+#    mode: '0400'
+#  notify: 'Restart airflow'
 
 
 # Manage logs folder
