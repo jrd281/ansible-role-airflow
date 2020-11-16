@@ -29,7 +29,7 @@
 - name: 'CONFIG | CONNECTIONS | Add connections using conn_uri'
   command: >
     {{ airflow_virtualenv }}/bin/airflow connections add \
-    --conn-id {{ item.conn_id }} \
+    {{ item.conn_id }} \
     --conn-uri {{ item.conn_uri | default('') | quote }} \
     --conn-extra {{ item.conn_extra | default('') | quote }}
   changed_when: false
@@ -41,7 +41,7 @@
 - name: 'CONFIG | CONNECTIONS | Add connections not using conn_uri with port'
   command: >
     {{ airflow_virtualenv }}/bin/airflow connections add \
-    --conn-id {{ item.conn_id }} \
+    {{ item.conn_id }} \
     --conn-type {{ item.conn_type | default('') | quote }} \
     --conn-host {{ item.conn_host | default('') | quote }} \
     --conn-login {{ item.conn_login | default('') | quote }} \
@@ -59,7 +59,7 @@
 - name: 'CONFIG | CONNECTIONS | Add connections not using conn_uri without port'
   command: >
     {{ airflow_virtualenv }}/bin/airflow connections add \
-    --conn-id {{ item.conn_id }} \
+    {{ item.conn_id }} \
     --conn-type {{ item.conn_type | default('') | quote }} \
     --conn-host {{ item.conn_host | default('') | quote }} \
     --conn-login {{ item.conn_login | default('') | quote }} \
