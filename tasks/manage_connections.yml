@@ -49,7 +49,7 @@
     --conn-schema {{ item.conn_schema | default('') | quote }} \
     --conn-extra {{ item.conn_extra | default('') | quote }}
   changed_when: false
-  no_log: True
+  #no_log: True
   with_items: "{{ airflow_connections }}"
   when:
     - "(item.conn_uri | default('')) | length == 0"
@@ -68,7 +68,7 @@
     --conn-port {{ item.conn_port }} \
     --conn-extra {{ item.conn_extra | default('') | quote }}
   changed_when: false
-  no_log: True
+  #no_log: True
   with_items: "{{ airflow_connections }}"
   when:
     - "(item.conn_uri | default('')) | length == 0"
