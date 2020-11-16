@@ -43,9 +43,13 @@
 
 
 - name: 'CONFIG | VARIABLES | Import variables from file'
+  become_user: "{{ airflow_user_name }}"
+  become: true
   shell: >
     set -o pipefail && \
     {{ airflow_virtualenv }}/bin/airflow variables import /tmp/merged_variables.json
   #no_log: True
+  args:
+    executable: /bin/bash
   changed_when: merged_variables
   run_once: true
