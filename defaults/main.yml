@@ -33,6 +33,11 @@ airflow_plugins_owner: "{{ airflow_user_name }}"
 airflow_plugins_group: "{{ airflow_user_group }}"
 airflow_plugins_mode: '0700'
 
+airflow_dags_repos_path: "{{ airflow_user_home_path ~ '/airflow/dags_repos' }}"
+airflow_dags_repos_owner: "{{ airflow_user_name }}"
+airflow_dags_repos_group: "{{ airflow_user_group }}"
+airflow_dags_repos_mode: '0700'
+
 airflow_pid_path: '/var/run/airflow'
 airflow_pid_owner: "{{ airflow_user_name }}"
 airflow_pid_group: "{{ airflow_user_group }}"

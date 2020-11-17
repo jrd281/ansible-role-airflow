@@ -24,6 +24,15 @@
     mode: "{{ airflow_log_mode }}"
     state: 'directory'
 
+# Manage dags_repos folder
+- name: 'CONFIG | Manage dags_repos folder'
+  file:
+    path: "{{ airflow_dags_repos_path }}"
+    owner: "{{ airflow_dags_repos_owner }}"
+    group: "{{ airflow_dags_repos_group }}"
+    mode: "{{ airflow_dags_repos_mode }}"
+    state: 'directory'
+
 # Manage plugins folder
 - name: 'CONFIG | Manage plugins folder'
   file:
