@@ -24,6 +24,14 @@
     mode: "{{ airflow_log_mode }}"
     state: 'directory'
 
+# Manage plugins folder
+- name: 'CONFIG | Manage plugins folder'
+  file:
+    path: "{{ airflow_plugins_path }}"
+    owner: "{{ airflow_plugins_owner }}"
+    group: "{{ airflow_plugins_group }}"
+    mode: "{{ airflow_plugins_mode }}"
+    state: 'directory'
 
 # Manage pid folder
 - name: 'CONFIG | Manage pid folder'

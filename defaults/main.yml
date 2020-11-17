@@ -28,6 +28,11 @@ airflow_log_owner: "{{ airflow_user_name }}"
 airflow_log_group: "{{ airflow_user_group }}"
 airflow_log_mode: '0700'
 
+airflow_plugins_path: "{{ airflow_user_home_path ~ '/airflow/plugins' }}"
+airflow_plugins_owner: "{{ airflow_user_name }}"
+airflow_plugins_group: "{{ airflow_user_group }}"
+airflow_plugins_mode: '0700'
+
 airflow_pid_path: '/var/run/airflow'
 airflow_pid_owner: "{{ airflow_user_name }}"
 airflow_pid_group: "{{ airflow_user_group }}"
