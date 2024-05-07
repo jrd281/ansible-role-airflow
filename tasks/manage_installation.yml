@@ -108,6 +108,11 @@
         (item.version is defined) and
       ( (item.version is search('<') ) or (item.version is search('>') ) )
 
+- name: Display all variables/facts known for a host
+  debug:
+    var: hostvars[inventory_hostname]
+  tags: debug_info
+
 - debug:
     var: "{{ airflow_extra_packages }}"
 
