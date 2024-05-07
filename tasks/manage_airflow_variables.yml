@@ -47,6 +47,6 @@
   shell: >
     set -o pipefail && \
     {{ airflow_virtualenv }}/bin/airflow variables import /tmp/merged_variables.json
-  no_log: true
+  #no_log: true
   changed_when: merged_variables
   run_once: true
