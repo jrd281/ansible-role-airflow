@@ -47,4 +47,4 @@
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ airflow_dag_system_dependencies }}"
-  when: airflow_dag_system_dependencies is not None and airflow_dag_system_dependencies | length  > 0
+  when: airflow_dag_system_dependencies and airflow_dag_system_dependencies | length  > 0
