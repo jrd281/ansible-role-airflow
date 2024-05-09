@@ -122,7 +122,7 @@ airflow_manage_database: true
 airflow_database_engine: 'mysql'
 airflow_database_sqlite_file_path: "{{ airflow_user_home_path ~ '/airflow/airflow.db' }}"
 
-airflow_webserver_authenticate: false
+airflow_webserver_authenticate: True
 
 # Default configuration
 airflow_config_template: "templates/airflow.cfg.j2"
