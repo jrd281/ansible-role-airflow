@@ -131,11 +131,10 @@ airflow_defaults_config:
     airflow_home_mode: "0700"
     dags_folder: "{{ airflow_user_home_path ~ '/airflow/dags' }}"
     dags_folder_mode: "0755"
-    base_log_folder: "{{ airflow_log_path }}"
     encrypt_s3_logs: false
-    executor: 'SequentialExecutor'
+    executor: 'LocalExecutor'
     parallelism: 32
-    dag_concurrency: 16
+    max_active_tasks_per_dag: 16
     dags_are_paused_at_creation: true
     non_pooled_task_slot_count: 128
     max_active_runs_per_dag: 16
@@ -148,14 +147,23 @@ airflow_defaults_config:
   logging:
     remote_base_log_folder: ''
     remote_log_conn_id: ''
+    base_log_folder: "{{ airflow_log_path }}"
 
   database:
-    sql_alchemy_conn: "sqlite:///{{ airflow_database_sqlite_file_path }}"
+    sql_alchemy_conn: "mysql://airflow_mysql_user:9QTsH8@localhost/airflow_db"
     sql_alchemy_pool_size: 5
     sql_alchemy_pool_recycle: 3600
 
   operators:
     default_owner: 'Airflow'
+    celery:
+      celery_app_name: 'airflow.providers.celery.executors.celery_executor'
+      worker_concurrency: 16
+      worker_log_server_port: 8793
+      broker_url: 'sqla+mysql://airflow:airflow@localhost:3306/airflow'
+      celery_result_backend: 'db+mysql://airflow:airflow@localhost:3306/airflow'
+      flower_port: 5555
+      default_queue: 'default'
 
   webserver:
     auth_backends: ''
@@ -188,26 +196,19 @@ airflow_defaults_config:
     smtp_password: 'airflow'
     smtp_mail_from: 'airflow@airflow.com'
 
-  celery:
-    celery_app_name: 'airflow.providers.celery.executors.celery_executor'
-    worker_concurrency: 16
-    worker_log_server_port: 8793
-    broker_url: 'sqla+mysql://airflow:airflow@localhost:3306/airflow'
-    celery_result_backend: 'db+mysql://airflow:airflow@localhost:3306/airflow'
-    flower_port: 5555
-    default_queue: 'default'
-
   scheduler:
     job_heartbeat_sec: 5
     log_file: "{{ airflow_log_path }}/airflow-scheduler.log"
     max_tis_per_query: 0
     pid: "{{ airflow_pid_path }}/airflow-scheduler.pid"
     scheduler_heartbeat_sec: 5
-    statsd_on: false
     statsd_host: 'localhost'
     statsd_port: 8125
     statsd_prefix: 'airflow'
     parsing_processes: 2
+
+  metrics:
+    statsd_on: false
 
   mesos:
     master: 'localhost:5050'
