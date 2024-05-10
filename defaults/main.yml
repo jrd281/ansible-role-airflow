@@ -50,11 +50,16 @@ airflow_packages:
     version: '2.8.2'
   - name: 'pipenv'
   - name: 'numpy'
+  - name: 'GitPython'
+
 airflow_extra_packages:
   - name: 'apache-airflow[amazon]'
 
 dag_packages: []
-
+x:
+  webserver:
+    authenticate: True
+    auth_backend: airflow.contrib.auth.backends.password_auth
 # option to set environment for all users,
 # by providing a file in /etc/profile.d/
 airflow_provide_user_env: true

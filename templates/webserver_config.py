@@ -19,7 +19,7 @@
 
 import os
 from airflow import configuration as conf
-# from flask_appbuilder.security.manager import AUTH_DB
+from flask_appbuilder.security.manager import AUTH_DB
 # from flask_appbuilder.security.manager import AUTH_LDAP
 from flask_appbuilder.security.manager import AUTH_OAUTH
 # from flask_appbuilder.security.manager import AUTH_OID
