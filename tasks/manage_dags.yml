@@ -25,7 +25,7 @@
     src: "{{ dags_repos_folder }}/{{ item.dest_folder }}{% if item.dags_folder_name is defined %}/{{ item.dags_folder_name }}{% endif %}"
   with_items:
     - "{{ dags_git_repositories }}"
-  when: (item.branch_or_release | length) > 0
+  when: dags_git_repositories and (dags_git_repositories | length  > 0) and (item.branch_or_release | length) > 0
 
 # For DAG-Related Git Repos, clone designated branch or release to $HOME
 - name: 'CONFIG | DAGS | Clone listed DAG-related git repositories'
@@ -39,6 +39,7 @@
     version: "{{ item.branch_or_release }}"
   with_items:
     - "{{ dags_related_git_repositories }}"
+  when: dags_related_git_repositories and (dags_related_git_repositories | length  > 0)
 
 
 # Manage DAGs system dependencies
@@ -47,4 +48,4 @@
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ airflow_dag_system_dependencies }}"
-  when: airflow_dag_system_dependencies and airflow_dag_system_dependencies | length  > 0
+  when: airflow_dag_system_dependencies and (airflow_dag_system_dependencies | length  > 0)
