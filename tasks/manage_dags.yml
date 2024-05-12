@@ -13,7 +13,7 @@
     recursive: false
   with_items:
     - "{{ dags_git_repositories }}"
-  when: (item.branch_or_release | length) > 0
+  when: dags_git_repositories and (dags_git_repositories | length  > 0) and (item.branch_or_release | length) > 0
 
 # FOR Listed DAG Git Repos, link them from download destination to configured DAGS folder
 - name: 'CONFIG | DAGS | Link dag repository to dags folder'
