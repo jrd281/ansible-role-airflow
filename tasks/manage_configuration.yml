@@ -1,4 +1,18 @@
 ---
+- name: 'CONFIG | What is the value of the airflow_defaults_config'
+  debug:
+    var: airflow_defaults_config
+  tags: debug_info
+
+- name: 'CONFIG | What is the value of the airflow_config'
+  debug:
+    var: airflow_config
+  tags: debug_info
+
+- name: 'CONFIG | What is the value of the airflow_user_config'
+  debug:
+    var: airflow_user_config
+  tags: debug_info
 
 # Airflow configuration tasks
 
